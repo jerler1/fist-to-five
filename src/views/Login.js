@@ -4,6 +4,8 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
+import InputField from '../components/InputField'
+import TextButton from '../components/TextButton'
 
 const useStyles=makeStyles(theme => ({
     mainContainer: {
@@ -36,6 +38,13 @@ export default function Instructor(){
                 <Divider />
             </Grid>
             <Grid item align="center" style={{marginBottom: "1em"}} direction="column">
+                <InputField label="User Name"/>
+            </Grid>
+            <Grid item align="center" style={{marginBottom: "1em"}} direction="column">
+                <InputField label="Password"/>
+            </Grid>
+            <Grid item align="center" style={{marginBottom: "1em"}} direction="column">
+                <TextButton text="Let's Go" link=""/>
             </Grid>
         </Grid>
     )
