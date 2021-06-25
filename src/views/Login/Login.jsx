@@ -11,7 +11,7 @@ const Login = () => {
     reset,
   } = useForm();
 
-  const [ isCreateAccountActive, setIsCreateAccountActive ] = useState(false);
+  const [isCreateAccountActive, setIsCreateAccountActive] = useState(false);
 
   const onSubmit = async (data) => {
     try {
@@ -46,6 +46,38 @@ const Login = () => {
           </div>
           <button>Login</button>
           <button>Create Account</button>
+        </form>
+        <form>
+          <h3>What type of account are you making?</h3>
+          <div className="field">
+            <label className="label">Username</label>
+            <div className="control">
+              <input type="radio" name="instructor" />
+              Instructor
+            </div>
+            <div className="control">
+              <input type="radio" name="instructor" />
+              Student
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">First Name</label>
+            <div className="control">
+              <input type="text" />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Last Name</label>
+            <div className="control">
+              <input type="text" />
+            </div>
+          </div>
+          <div className="field">
+            <label className="label">Class Name</label>
+            <div className="control">
+              <input type="text" />
+            </div>
+          </div>
         </form>
       </div>
     </div>
