@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@material-ui/core/styles';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import theme from "./Theme"
-import Login from "./views/Login";
+import Login from "./views/Login/Login";
 import Instructor from "./views/Instructor";
 import Student from "./views/Student";
 

@@ -1,4 +1,5 @@
 import React from "react";
+import "./Login.scss";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
 
@@ -11,7 +12,6 @@ const Login = () => {
     formState: { errors },
     handleSubmit,
     reset,
-    control,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -25,7 +25,7 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="loginContainer">
       
     </div>
   );
