@@ -12,6 +12,8 @@ const Login = () => {
   } = useForm();
 
   const [isCreateAccountActive, setIsCreateAccountActive] = useState(false);
+  const [isCreateInstructorActive, setIsCreateInstructorActive] =
+    useState(true);
 
   const onSubmit = async (data) => {
     try {
@@ -23,64 +25,107 @@ const Login = () => {
     }
   };
 
+  const handleCreateAccountButtonClick = () => {
+    setIsCreateAccountActive(!isCreateAccountActive);
+  };
+
+  const formSelectionOnChange = (e) => {
+    console.log(e.target.value);
+  };
+
   return (
     <div className="loginContainer">
       <div className="loginWrapper">
-        <h3>Login</h3>
-        <form
-          className="loginForm"
-          onSubmit={handleSubmit(onSubmit)}
-          noValidate
-        >
-          <div className="field">
-            <label className="label">Username</label>
-            <div className="control">
-              <input type="text" />
-            </div>
+        {isCreateAccountActive ? (
+          <div className="loginForm">
+            <h3>Login</h3>
+            <form
+              className="loginForm"
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+            >
+              <div className="field">
+                <label className="label">Username</label>
+                <div className="control">
+                  <input type="text" />
+                </div>
+              </div>
+              <div className="field">
+                <label className="label">Password</label>
+                <div className="control">
+                  <input type="password" />
+                </div>
+              </div>
+              <button>Login</button>
+              <button onClick={handleCreateAccountButtonClick}>
+                Create Account
+              </button>
+            </form>
           </div>
-          <div className="field">
-            <label className="label">Password</label>
-            <div className="control">
-              <input type="password" />
+        ) : (
+          <div className="createAccountForm">
+            <div className="accountSelection">
+              <div className="field" onChange={formSelectionOnChange}>
+                <label className="label">Account Type</label>
+                <div className="control">
+                  <input type="radio" name="instructor" value="instructor" />
+                  Instructor
+                </div>
+                <div className="control">
+                  <input type="radio" name="student" value="student" />
+                  Student
+                </div>
+              </div>
             </div>
+            {isCreateInstructorActive ? (
+              <form className="instructorForm">
+                <div className="field">
+                  <label className="label">First Name</label>
+                  <div className="control">
+                    <input type="text" />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label">Last Name</label>
+                  <div className="control">
+                    <input type="text" />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label">Class Name</label>
+                  <div className="control">
+                    <input type="text" />
+                  </div>
+                </div>
+                <button>Create your account</button>
+                <button>Login</button>
+              </form>
+            ) : (
+              <form className="studentForm">
+                <div className="field">
+                  <label className="label">First Name</label>
+                  <div className="control">
+                    <input type="text" />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label">Last Name</label>
+                  <div className="control">
+                    <input type="text" />
+                  </div>
+                </div>
+                <div className="field">
+                  <label className="label">Student Background</label>
+                  <div className="control">
+                    <input type="text" />
+                  </div>
+                </div>
+                <button>Create your account</button>
+                <button>Login</button>
+              </form>
+            )}
           </div>
-          <button>Login</button>
-          <button>Create Account</button>
-        </form>
-        <form>
-          <h3>What type of account are you making?</h3>
-          <div className="field">
-            <label className="label">Username</label>
-            <div className="control">
-              <input type="radio" name="instructor" />
-              Instructor
-            </div>
-            <div className="control">
-              <input type="radio" name="instructor" />
-              Student
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">First Name</label>
-            <div className="control">
-              <input type="text" />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Last Name</label>
-            <div className="control">
-              <input type="text" />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Class Name</label>
-            <div className="control">
-              <input type="text" />
-            </div>
-          </div>
-          <button>Create your account</button>
-          <button>Login</button>
-        </form>
+        )}
       </div>
     </div>
   );
