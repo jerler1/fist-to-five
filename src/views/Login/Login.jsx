@@ -122,7 +122,7 @@ const Login = () => {
                   Create your account
                 </button>
                 <button
-                  className="button is-fullwidth is-danger is-light"
+                  className="button is-fullwidth is-danger"
                   onClick={handleCreateAccountButtonClick}
                 >
                   Back To Login
@@ -183,7 +183,7 @@ const Login = () => {
                   Create your account
                 </button>
                 <button
-                  className="button is-fullwidth is-danger is-light"
+                  className="button is-fullwidth is-danger"
                   onClick={handleCreateAccountButtonClick}
                 >
                   Back to Login
@@ -233,7 +233,7 @@ const Login = () => {
                 Login
               </button>
               <button
-                className="button is-fullwidth is-danger is-light"
+                className="button is-fullwidth is-danger"
                 onClick={handleCreateAccountButtonClick}
               >
                 Create Account
