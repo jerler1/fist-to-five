@@ -24,6 +24,14 @@ const Login = () => {
     }
   };
 
+  const createInstructor = async (data) => {
+    try {
+      console.log(data);
+    } catch (error) {
+      console.error("ERROR: ", error);
+    }
+  }
+
   const handleCreateAccountButtonClick = (event) => {
     event.preventDefault();
     console.log("Changing to new form!");
@@ -70,7 +78,7 @@ const Login = () => {
             {selectedRadioButton === "instructor" ? (
               <form
                 className="instructorForm"
-                onSubmit={handleSubmit(onSubmit)}
+                onSubmit={handleSubmit(createInstructor)}
                 noValidate
               >
                 <div className="field">
