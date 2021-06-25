@@ -24,7 +24,8 @@ const Login = () => {
     }
   };
 
-  const handleCreateAccountButtonClick = () => {
+  const handleCreateAccountButtonClick = (event) => {
+    event.preventDefault();
     console.log("Changing to new form!");
     setIsCreateAccountActive(!isCreateAccountActive);
   };
@@ -35,27 +36,33 @@ const Login = () => {
         {isCreateAccountActive ? (
           <div className="createAccountForm">
             <div className="accountSelection">
-              <div className="field">
-                <label className="label">Account Type</label>
-                <div className="control">
-                  <input
-                    type="radio"
-                    name="choice"
-                    value="instructor"
-                    checked={selectedRadioButton === "instructor"}
-                    onClick={() => setSelectedRadioButton("instructor")}
-                  />
-                  Instructor
-                </div>
-                <div className="control">
-                  <input
-                    type="radio"
-                    name="choice"
-                    value="student"
-                    checked={selectedRadioButton === "student"}
-                    onClick={() => setSelectedRadioButton("student")}
-                  />
-                  Student
+              <div className="field accountTypeSelection">
+                <h3>Account Type</h3>
+                <div className="radioButtonsWrapper">
+                  <div className="control">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        name="choice"
+                        value="instructor"
+                        checked={selectedRadioButton === "instructor"}
+                        onChange={() => setSelectedRadioButton("instructor")}
+                      />
+                      Instructor
+                    </label>
+                  </div>
+                  <div className="control">
+                    <label className="radio">
+                      <input
+                        type="radio"
+                        name="choice"
+                        value="student"
+                        checked={selectedRadioButton === "student"}
+                        onChange={() => setSelectedRadioButton("student")}
+                      />
+                      Student
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
@@ -66,21 +73,48 @@ const Login = () => {
                 noValidate
               >
                 <div className="field">
-                  <label className="label">First Name</label>
+                  <label className="label">First Name:</label>
                   <div className="control">
-                    <input type="text" />
+                    <input
+                      type="text"
+                      {...register("firstName", { required: true })}
+                      className="input is-normal is-primary"
+                    />
+                    {errors.firstName && (
+                      <span className="errorMessage">
+                        Please enter a valid first name.
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="field">
-                  <label className="label">Last Name</label>
+                  <label className="label">Last Name:</label>
                   <div className="control">
-                    <input type="text" />
+                    <input
+                      type="text"
+                      className="input is-normal is-primary"
+                      {...register("firstName", { required: true })}
+                    />
+                    {errors.lastName && (
+                      <span className="errorMessage">
+                        Please enter a valid last name.
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="field">
-                  <label className="label">Class Name</label>
+                  <label className="label">Class Name:</label>
                   <div className="control">
-                    <input type="text" />
+                    <input
+                      type="text"
+                      className="input is-normal is-primary"
+                      {...register("className", { required: true })}
+                    />
+                    {errors.lastName && (
+                      <span className="errorMessage">
+                        Please enter a valid class name.
+                      </span>
+                    )}
                   </div>
                 </div>
                 <button>Create your account</button>
@@ -93,21 +127,48 @@ const Login = () => {
                 noValidate
               >
                 <div className="field">
-                  <label className="label">First Name</label>
+                  <label className="label">First Name:</label>
                   <div className="control">
-                    <input type="text" />
+                    <input
+                      type="text"
+                      className="input is-normal is-primary"
+                      {...register("firstName", { required: true })}
+                    />
+                    {errors.firstName && (
+                      <span className="errorMessage">
+                        Please enter a valid first name.
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="field">
-                  <label className="label">Last Name</label>
+                  <label className="label">Last Name:</label>
                   <div className="control">
-                    <input type="text" />
+                    <input
+                      type="text"
+                      className="input is-normal is-primary"
+                      {...register("lastName", { required: true })}
+                    />
+                    {errors.lastName && (
+                      <span className="errorMessage">
+                        Please enter a valid class name.
+                      </span>
+                    )}
                   </div>
                 </div>
                 <div className="field">
-                  <label className="label">Student Background</label>
+                  <label className="label">Student Background:</label>
                   <div className="control">
-                    <input type="text" />
+                    <textarea
+                      type="text"
+                      className="textarea is-normal is-primary"
+                      {...register("studentBackground", { required: true })}
+                    />
+                    {errors.studentBackground && (
+                      <span className="errorMessage">
+                        Please enter a student background.
+                      </span>
+                    )}
                   </div>
                 </div>
                 <button>Create your account</button>
@@ -126,15 +187,33 @@ const Login = () => {
               noValidate
             >
               <div className="field">
-                <label className="label">Username</label>
+                <label className="label">Username:</label>
                 <div className="control">
-                  <input type="text" />
+                  <input
+                    type="text"
+                    className="input is-normal is-primary"
+                    {...register("username", { required: true })}
+                  />
+                  {errors.username && (
+                    <span className="errorMessage">
+                      Please enter a valid username.
+                    </span>
+                  )}
                 </div>
               </div>
               <div className="field">
-                <label className="label">Password</label>
+                <label className="label">Password:</label>
                 <div className="control">
-                  <input type="password" />
+                  <input
+                    type="password"
+                    className="input is-normal is-primary"
+                    {...register("password", { required: true })}
+                  />
+                  {errors.password && (
+                    <span className="errorMessage">
+                      Please enter a valid password.
+                    </span>
+                  )}
                 </div>
               </div>
               <button>Login</button>
