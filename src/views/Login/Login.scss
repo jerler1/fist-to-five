@@ -1,0 +1,14 @@
+@import "../../sass/mixins";
+
+.loginContainer {
+    @include dimensions(100%, 100vh);
+    @include flex(row, center, center);
+    min-height: 100%;
+    background-color: lightblue;
+    .loginWrapper {
+        @include dimensions(auto, auto);
+        @include flex(column, center, center);
+        background-color: white;
+        box-shadow: 5px 5px 10px;
+    }
+}
