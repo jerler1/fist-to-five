@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@material-ui/core/styles';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
 import theme from "./Theme"
-import Login from "./views/Login";
+import Login from "./views/Login/Login";
 import Instructor from "./views/Instructor";
 import Student from "./views/Student";
 
@@ -10,9 +10,9 @@ function App() {
     <ThemeProvider theme={theme}>
         <BrowserRouter>
             <Switch>
-              <Route exact path="/login"><Login /></Route>
-              <Route exact path="/instructor"><Instructor /></Route>
-              <Route exact path="/student"><Student /></Route>
+              <Route exact path="/" component={Login}/>
+              <Route exact path="/instructor" component={Instructor}/>
+              <Route exact path="/student" component={Student}/>
             </Switch>
         </BrowserRouter>
     </ThemeProvider>

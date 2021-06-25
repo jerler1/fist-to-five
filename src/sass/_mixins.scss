@@ -1,0 +1,19 @@
+@mixin flex($direction, $justify, $align) {
+    display: flex;
+    flex-direction: $direction;
+    justify-content: $justify;
+    align-items: $align;
+  }
+  @mixin dimensions($width, $height) {
+    width: $width;
+    height: $height;
+  }
+  @mixin for-size($size) {
+    @if $size == phone {
+      @media (max-width: 800px) { @content; }
+    } @else if $size == tablet {
+      @media (min-width: 801px) { @content; }
+    } @else if $size == desktop {
+      @media (min-width: 1200px) { @content; }
+    }
+  }
