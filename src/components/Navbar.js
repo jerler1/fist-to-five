@@ -68,7 +68,7 @@ export const Navbar = () => {
             <Button id="contact" component={Link} to={'/student'} variant="button" color="textPrimary" href="#" className={classes.link}>
               STUDENT VIEW
             </Button>
-            <Button id="about" component={Link} to={'/login'} variant="button" color="textPrimary" href="#" className={classes.link}>
+            <Button id="about" component={Link} to={'/'} variant="button" color="textPrimary" href="#" className={classes.link}>
               LOGIN VIEW
             </Button>
           </nav>

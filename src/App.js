@@ -4,14 +4,19 @@ import theme from "./Theme"
 import Login from "./views/Login/Login";
 import Instructor from "./views/Instructor";
 import Student from "./views/Student";
+import StudentActivityCard from './components/StudentActivityCard';
 import { Navbar } from './components/Navbar';
+import ActivityForm from './components/ActivityForm';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
         <BrowserRouter>
+        <Navbar />
+        {/* <ActivityForm/> */}
             <Switch>
-            <Navbar />
+            {/* <Student /> */}
+            {/* <Instructor/> */}
               <Route exact path="/" component={Login}/>
               <Route exact path="/instructor" component={Instructor}/>
               <Route exact path="/student" component={Student}/>
