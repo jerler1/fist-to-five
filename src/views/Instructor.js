@@ -5,6 +5,7 @@ import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import StudentActivityCard from "../components/StudentActivityCard";
+import InstructorActivityCard from '../components/InstructorActivityCard';
 import "bulma/css/bulma.min.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +48,7 @@ export default function Instructor() {
                   <button class="button is-success">Add New Activity</button>
                 </div>
               </article>
-              <StudentActivityCard />
+              <InstructorActivityCard />
             </div>
             <div class="column">
               <article class="message is-info">
