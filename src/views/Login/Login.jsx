@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Login.scss";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
@@ -10,6 +10,8 @@ const Login = () => {
     handleSubmit,
     reset,
   } = useForm();
+
+  const [ isCreateAccountActive, setIsCreateAccountActive ] = useState(false);
 
   const onSubmit = async (data) => {
     try {
