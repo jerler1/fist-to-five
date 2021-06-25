@@ -27,6 +27,7 @@ const Login = () => {
   const handleCreateAccountButtonClick = (event) => {
     event.preventDefault();
     console.log("Changing to new form!");
+    reset();
     setIsCreateAccountActive(!isCreateAccountActive);
   };
 
@@ -117,8 +118,15 @@ const Login = () => {
                     )}
                   </div>
                 </div>
-                <button>Create your account</button>
-                <button onClick={handleCreateAccountButtonClick}>Login</button>
+                <button className="button is-fullwidth is-info" type="submit">
+                  Create your account
+                </button>
+                <button
+                  className="button is-fullwidth is-danger is-light"
+                  onClick={handleCreateAccountButtonClick}
+                >
+                  Back To Login
+                </button>
               </form>
             ) : (
               <form
@@ -171,8 +179,13 @@ const Login = () => {
                     )}
                   </div>
                 </div>
-                <button>Create your account</button>
-                <button onClick={handleCreateAccountButtonClick}>
+                <button className="button is-fullwidth is-info" type="submit">
+                  Create your account
+                </button>
+                <button
+                  className="button is-fullwidth is-danger is-light"
+                  onClick={handleCreateAccountButtonClick}
+                >
                   Back to Login
                 </button>
               </form>
@@ -216,8 +229,13 @@ const Login = () => {
                   )}
                 </div>
               </div>
-              <button>Login</button>
-              <button onClick={handleCreateAccountButtonClick}>
+              <button className="button is-fullwidth is-info" type="submit">
+                Login
+              </button>
+              <button
+                className="button is-fullwidth is-danger is-light"
+                onClick={handleCreateAccountButtonClick}
+              >
                 Create Account
               </button>
             </form>
