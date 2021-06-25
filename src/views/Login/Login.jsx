@@ -3,8 +3,6 @@ import "./Login.scss";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
 
-import React from "react";
-
 const Login = () => {
   const {
     register,
