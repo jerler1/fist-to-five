@@ -78,6 +78,8 @@ const Login = () => {
               <input type="text" />
             </div>
           </div>
+          <button>Create your account</button>
+          <button>Login</button>
         </form>
       </div>
     </div>
