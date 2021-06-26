@@ -2,6 +2,7 @@ import React from "react";
 import StudentActivityCard from "../components/StudentActivityCard";
 
 export default function Student() {
+  
   return (
     <div>
       <article>

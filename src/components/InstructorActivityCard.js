@@ -23,7 +23,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function InstructorActivityCard() {
+export default function InstructorActivityCard(props) {
   const classes = useStyles();
   const bull = <span className={classes.bullet}>•</span>;
 
@@ -31,15 +31,13 @@ export default function InstructorActivityCard() {
     <Card className={classes.root}>
       <CardContent>
         <Typography variant="h5" component="h2">
-          spring-security-tutorial
+          {props.info.activityName}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-        Module 4, Day 3, Activity 2
+        {props.info.filePath}
         </Typography>
         <Typography variant="body2" component="p">
-        This tutorial shows you how to control access to a Spring Boot web service using 
-        Spring Security authentication and role based access control (authorization). You will need: MySQL, MySQL Workbench, 
-        Spring Initializr (start.spring.io), and IntelliJ IDEA Community Edition
+        {props.info.activityDescription}
         </Typography>
       </CardContent>
       <CardActions>
