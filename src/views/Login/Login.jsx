@@ -199,7 +199,7 @@ const Login = () => {
                       <textarea
                         type="text"
                         className="textarea is-normal is-primary"
-                        {...register("studentBackground", { required: true })}
+                        {...register("studentBio", { required: true })}
                       />
                       {errors.studentBackground && (
                         <span className="errorMessage">
