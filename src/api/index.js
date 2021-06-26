@@ -6,6 +6,10 @@ const api = {
       .post("localhost:4141/instructor", data)
       .then((data) => console.log(data));
   },
+  createStudent(data) {
+    return axios
+    .post("localhost:4141/student", data)
+  },
 
   // Activities below
   createActivity(data) {
