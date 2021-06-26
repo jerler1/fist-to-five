@@ -21,6 +21,7 @@ function App() {
               <Route exact path="/" component={Login}/>
               <Route exact path="/instructor" component={Instructor}/>
               <Route exact path="/student" component={Student}/>
+              <Route exact path="/createActivity" component={ActivityForm}/>
             </Switch>
         </BrowserRouter>
     </ThemeProvider>

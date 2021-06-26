@@ -7,6 +7,8 @@ import Divider from "@material-ui/core/Divider";
 import StudentActivityCard from "../components/StudentActivityCard";
 import InstructorActivityCard from '../components/InstructorActivityCard';
 import "bulma/css/bulma.min.css";
+import { Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -38,14 +40,16 @@ export default function Instructor() {
           <p>INSTRUCTOR VIEW</p>
         </div>
         <div class="message-body">
+            <nav>
+                  <Button class="button is-success" component={Link} to={'/createActivity'}  variant="button" color="textPrimary" href="#" className={classes.link}>Add New Activity</Button>
+                  </nav>
+                </div>
+        <div class="message-body">
           <div class="columns">
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>PLANNED</p>
-                </div>
-                <div class="message-body">
-                  <button class="button is-success">Add New Activity</button>
                 </div>
               </article>
               <InstructorActivityCard />
@@ -55,18 +59,12 @@ export default function Instructor() {
                 <div class="message-header">
                   <p>IN PROGRESS</p>
                 </div>
-                <div class="message-body">
-                  <button class="button is-success">Add New Activity</button>
-                </div>
               </article>{" "}
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>COMPLETED</p>
-                </div>
-                <div class="message-body">
-                  <button class="button is-success">Add New Activity</button>
                 </div>
               </article>{" "}
             </div>
