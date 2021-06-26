@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import StudentActivityCard from "../components/StudentActivityCard";
-import InstructorActivityCard from '../components/InstructorActivityCard';
+import InstructorActivityCard from "../components/InstructorActivityCard";
 import "bulma/css/bulma.min.css";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
+import api from "../api";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -33,6 +34,20 @@ const useStyles = makeStyles((theme) => ({
 export default function Instructor() {
   const classes = useStyles();
 
+  const [activities, setActivities] = React.useState([]);
+  useEffect(() => {
+    loadActivities();
+  }, []);
+  function loadActivities() {
+    api
+      .getActivities()
+      .then((res) => {
+        setActivities(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div>
       <article>
@@ -40,10 +55,20 @@ export default function Instructor() {
           <p>INSTRUCTOR VIEW</p>
         </div>
         <div class="message-body">
-            <nav>
-                  <Button class="button is-success" component={Link} to={'/createActivity'}  variant="button" color="textPrimary" href="#" className={classes.link}>Add New Activity</Button>
-                  </nav>
-                </div>
+          <nav>
+            <Button
+              class="button is-success"
+              component={Link}
+              to={"/createActivity"}
+              variant="button"
+              color="textPrimary"
+              href="#"
+              className={classes.link}
+            >
+              Add New Activity
+            </Button>
+          </nav>
+        </div>
         <div class="message-body">
           <div class="columns">
             <div class="column">
@@ -52,7 +77,10 @@ export default function Instructor() {
                   <p>PLANNED</p>
                 </div>
               </article>
-              <InstructorActivityCard />
+              {/* <InstructorActivityCard /> */}
+              {activities.map((activity) => {
+                return <InstructorActivityCard info={activity} />;
+              })}
             </div>
             <div class="column">
               <article class="message is-info">

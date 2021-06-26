@@ -3,6 +3,7 @@ import "bulma/css/bulma.min.css";
 import StudentActivityCard from "../components/StudentActivityCard";
 
 export default function Student() {
+  
   return (
     <div>
       <article>
