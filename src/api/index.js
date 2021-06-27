@@ -24,8 +24,8 @@ const api = {
   updateActivity: function (id) {
     return axios.put(BASEURL + `/activity/${id}`);
   },
-  deleteActivity: function (id) {
-    return axios.delete(BASEURL + `/activity${id}`);
+  deleteActivity: function(id) {
+    return axios.delete(BASEURL+`/activity/${id}`);
   },
 };
 export default api;
