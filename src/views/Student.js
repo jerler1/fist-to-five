@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import StudentActivityCard from "../components/StudentActivityCard";
 import api from "../api";
 
-
 export default function Student() {
-
   const [activities, setActivities] = React.useState([]);
 
   useEffect(() => {
@@ -12,6 +10,7 @@ export default function Student() {
   }, []);
 
   function loadActivities() {
+    console.log("Getting Activities");
     api
       .getActivities()
       .then((res) => {
@@ -20,21 +19,22 @@ export default function Student() {
       })
       .catch((err) => console.log(err));
   }
-  
+
   return (
     <div>
       <article>
-        <div class="message-header">
+        <div className="message-header">
           <p>STUDENT VIEW</p>
         </div>
-        <div class="message-body">
-          <div class="columns">
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+        <div className="message-body">
+          <div className="columns">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Sunday</p>
                 </div>
               </article>
+
               {activities?.map((activity) => {
                 if(activity.weekday?.toString() === "SUNDAY"){
                 return (<StudentActivityCard info={activity} />);
@@ -42,9 +42,9 @@ export default function Student() {
               return null; 
               })}
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Monday</p>
                 </div>
               </article>              
@@ -55,9 +55,9 @@ export default function Student() {
               return null; 
               })}
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Tuesday</p>
                 </div>
               </article>
@@ -68,9 +68,9 @@ export default function Student() {
               return null; 
               })}
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Wednesday</p>
                 </div>
               </article>              
@@ -81,9 +81,9 @@ export default function Student() {
               return null; 
               })}
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Thursday</p>
                 </div>
               </article>              
@@ -94,12 +94,13 @@ export default function Student() {
               return null; 
               })}
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Friday</p>
                 </div>
               </article>
+
               {activities?.map((activity) => {
                 if(activity.weekday?.toString() === "FRIDAY"){
                 return (<StudentActivityCard info={activity} />);
@@ -107,9 +108,9 @@ export default function Student() {
               return null; 
               })}
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Saturday</p>
                 </div>
               </article>              
