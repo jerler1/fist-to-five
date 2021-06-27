@@ -62,13 +62,13 @@ export const Navbar = () => {
             FIST TO FIVE
           </Typography>
           <nav>
-            <Button id="pricing" component={Link} to={'/instructor'} variant="button" color="textPrimary" className={classes.link}>
+            <Button id="pricing" component={Link} to={'/instructor'} variant="text" color="primary" className={classes.link}>
               INSTRUCTOR VIEW
             </Button>
-            <Button id="contact" component={Link} to={'/student'} variant="button" color="textPrimary" href="#" className={classes.link}>
+            <Button id="contact" component={Link} to={'/student'} variant="text" color="primary" href="#" className={classes.link}>
               STUDENT VIEW
             </Button>
-            <Button id="about" component={Link} to={'/'} variant="button" color="textPrimary" href="#" className={classes.link}>
+            <Button id="about" component={Link} to={'/'} variant="text" color="primary" href="#" className={classes.link}>
               LOGIN VIEW
             </Button>
           </nav>
