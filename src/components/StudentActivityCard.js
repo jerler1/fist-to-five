@@ -26,7 +26,6 @@ const useStyles = makeStyles({
 export default function StudentActivityCard(props) {
   const classes = useStyles();
 
-  const bull = <span className={classes.bullet}>•</span>;
   const activity = props.info.id;
   console.log(activity)
 

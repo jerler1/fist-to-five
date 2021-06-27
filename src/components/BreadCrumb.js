@@ -1,6 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Breadcrumbs from '@material-ui/core/Breadcrumbs';
 import Link from '@material-ui/core/Link';
 
@@ -15,8 +14,6 @@ const useStyles = makeStyles((theme) => ({
     height: 20,
   },
 }));
-
-
 
 export default function IconBreadcrumbs(props) {
   const classes = useStyles();
