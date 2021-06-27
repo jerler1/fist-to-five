@@ -8,6 +8,7 @@ import StudentActivityCard from './components/StudentActivityCard';
 import InstructorActivityCard from './components/InstructorActivityCard';
 import { Navbar } from './components/Navbar';
 import ActivityForm from './components/ActivityForm';
+import "bulma/css/bulma.min.css";
 
 function App() {
   return (

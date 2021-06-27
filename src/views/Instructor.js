@@ -6,7 +6,6 @@ import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import StudentActivityCard from "../components/StudentActivityCard";
 import InstructorActivityCard from "../components/InstructorActivityCard";
-import "bulma/css/bulma.min.css";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import api from "../api";
