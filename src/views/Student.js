@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import StudentActivityCard from "../components/StudentActivityCard";
+import api from "../api";
+
 
 export default function Student() {
+
+  const [activities, setActivities] = React.useState([]);
+  useEffect(() => {
+    loadActivities();
+  }, []);
+  function loadActivities() {
+    api
+      .getActivities()
+      .then((res) => {
+        setActivities(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
   
   return (
     <div>
@@ -17,7 +33,9 @@ export default function Student() {
                   <p>Sunday</p>
                 </div>
               </article>
-              <StudentActivityCard />
+              {activities.map((activity) => {
+                return (<StudentActivityCard info={activity} />);
+              })}
             </div>
             <div class="column">
               <article class="message is-info">
