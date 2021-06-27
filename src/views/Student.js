@@ -3,7 +3,6 @@ import StudentActivityCard from "../components/StudentActivityCard";
 import api from "../api";
 
 export default function Student() {
-  
   const [activities, setActivities] = React.useState([]);
 
   useEffect(() => {
@@ -36,7 +35,8 @@ export default function Student() {
                 </div>
               </article>
               {activities.map((activity) => {
-                return <StudentActivityCard info={activity} />;
+                console.log(activity);
+                return <StudentActivityCard info={activity} key={activity.id}/>;
               })}
             </div>
             <div className="column">
