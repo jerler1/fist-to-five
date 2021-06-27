@@ -2,14 +2,16 @@ import React, { useState, useEffect } from "react";
 import StudentActivityCard from "../components/StudentActivityCard";
 import api from "../api";
 
-
 export default function Student() {
-
+  
   const [activities, setActivities] = React.useState([]);
+
   useEffect(() => {
     loadActivities();
   }, []);
+
   function loadActivities() {
+    console.log("Getting Activities");
     api
       .getActivities()
       .then((res) => {
@@ -18,7 +20,7 @@ export default function Student() {
       })
       .catch((err) => console.log(err));
   }
-  
+
   return (
     <div>
       <article>
@@ -34,7 +36,7 @@ export default function Student() {
                 </div>
               </article>
               {activities.map((activity) => {
-                return (<StudentActivityCard info={activity} />);
+                return <StudentActivityCard info={activity} />;
               })}
             </div>
             <div className="column">
