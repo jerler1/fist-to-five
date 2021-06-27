@@ -22,14 +22,14 @@ export default function Student() {
   return (
     <div>
       <article>
-        <div class="message-header">
+        <div className="message-header">
           <p>STUDENT VIEW</p>
         </div>
-        <div class="message-body">
-          <div class="columns">
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+        <div className="message-body">
+          <div className="columns">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Sunday</p>
                 </div>
               </article>
@@ -37,44 +37,44 @@ export default function Student() {
                 return (<StudentActivityCard info={activity} />);
               })}
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Monday</p>
                 </div>
               </article>
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Tuesday</p>
                 </div>
               </article>
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Wednesday</p>
                 </div>
               </article>
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Thursday</p>
                 </div>
               </article>
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Friday</p>
                 </div>
               </article>
             </div>
-            <div class="column">
-              <article class="message is-info">
-                <div class="message-header">
+            <div className="column">
+              <article className="message is-info">
+                <div className="message-header">
                   <p>Saturday</p>
                 </div>
               </article>
