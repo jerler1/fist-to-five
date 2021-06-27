@@ -15,8 +15,8 @@ const api = {
   getActivities: function () {
     return axios.get(BASEURL + "/activity");
   },
-  createActivity: function () {
-    return axios.post(BASEURL + "/activity");
+  createActivity: function (data) {
+    return axios.post(BASEURL + "/activity", data);
   },
   getActivityById: function (id) {
     return axios.get(BASEURL + `/activity/${id}`);

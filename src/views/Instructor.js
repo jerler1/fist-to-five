@@ -3,6 +3,7 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumb from "../components/BreadCrumb";
 import InstructorActivityCard from "../components/InstructorActivityCard";
+
 import "bulma/css/bulma.min.css";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
@@ -37,6 +38,7 @@ export default function Instructor() {
   const classes = useStyles();
 
   const [activities, setActivities] = React.useState([]);
+  const [filteredActivities, setFilteredActivities] = React.useState([]);
   const [selectedWeekday, setSelectedWeekday] = React.useState('SUNDAY');
   const [activityAvg, setActivityAvg] = React.useState(0);
   const [formObject, setFormObject] = useState({})
@@ -46,29 +48,51 @@ export default function Instructor() {
     loadActivities();
   }, []);
 
-// write function to calculate average 
+// create funtionality 
+
+// update funtionality
+
+// write function to calculate average / switch case for average yello / green/ red
 
   function loadActivities() {
     api
       .getActivities()
       .then((res) => {
-        const filteredActivities = res.data
-        filteredActivities.filter( (activity) => {
-          let day = activity.weekday.toString()
-          if (day !== selectedWeekday) {
-            return false; 
-          }
-        return true; 
-        })
-        console.log(filteredActivities)
-        setActivities(filteredActivities);
+        if(res.data){
+          console.log(res.data)
+          setActivities(res.data);
+          setFilteredActivities(res.data);
+        }
       })
       .catch((err) => console.log(err));
   }
 
-  const updateWeekday = (weekDay) => {
-    setSelectedWeekday(weekDay);
-    // loadActivities()
+  // const updateWeekday = async (weekday) => {
+  //   setFilteredActivities(activities)
+  //   setSelectedWeekday(weekday)
+  //   await updateWeekdayPartTwo()
+  // }
+
+  const updateWeekday= (weekday) => {
+
+    setSelectedWeekday(weekday)
+
+    const cats = filteredActivities.filter( (activity) => {
+        let day = activity.weekday?.toString()
+        console.log(day)
+          if (day !== selectedWeekday) {
+            return false; 
+          }
+      return true; 
+    })
+    console.log(cats)
+    setFilteredActivities(cats);
+    console.log(filteredActivities)
+  }
+
+  function handleBreadCrumbClick(event) {
+    event.preventDefault();
+    console.info('You clicked a breadcrumb.');
   }
 
   const removeActivity = (activity) => {
@@ -139,7 +163,7 @@ const updateActivity = (activity) => {
           </nav>
         </div>
         <div>
-          <Breadcrumb selectAWeekday={() => updateWeekday(selectedWeekday)} />
+        <Breadcrumb onWeekdayChange={handleBreadCrumbClick} />
         </div>
         <div class="message-body">
           <div class="columns">
@@ -150,8 +174,11 @@ const updateActivity = (activity) => {
                 </div>
               </article>
               {/* <InstructorActivityCard /> */}
-              {activities.map((activity) => {
-                return (<InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />);
+              {filteredActivities?.map((activity) => {
+                if(activity.status?.toString() === "PLANNED"){
+                  return <InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />
+                }
+                return null;
               })}
             </div>
             <div class="column">
@@ -159,14 +186,26 @@ const updateActivity = (activity) => {
                 <div class="message-header">
                   <p>IN PROGRESS</p>
                 </div>
-              </article>{" "}
+              </article>              
+              {filteredActivities?.map((activity) => {
+                if(activity.status?.toString() === "INPROGRESS"){
+                  return <InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />
+                }
+                return null;
+              })}
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>COMPLETED</p>
                 </div>
-              </article>{" "}
+              </article>            
+              {filteredActivities?.map((activity) => {
+                if(activity.status?.toString() === "COMPLETED"){
+                  return <InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />
+                }
+                return null;
+              })}
             </div>
           </div>
         </div>
