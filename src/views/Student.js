@@ -42,42 +42,42 @@ export default function Student() {
                 <div class="message-header">
                   <p>Monday</p>
                 </div>
-              </article>{" "}
+              </article>
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>Tuesday</p>
                 </div>
-              </article>{" "}
+              </article>
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>Wednesday</p>
                 </div>
-              </article>{" "}
+              </article>
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>Thursday</p>
                 </div>
-              </article>{" "}
+              </article>
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>Friday</p>
                 </div>
-              </article>{" "}
+              </article>
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>Saturday</p>
                 </div>
-              </article>{" "}
+              </article>
             </div>
           </div>
         </div>
