@@ -27,5 +27,21 @@ const api = {
   deleteActivity: function(id) {
     return axios.delete(BASEURL+`/activity/${id}`);
   },
+    // Ratings below
+    getRatings: function () {
+      return axios.get(BASEURL + "/rating");
+    },
+    createRating: function (data) {
+      return axios.post(BASEURL + "/rating", data);
+    },
+    getRatingById: function (id) {
+      return axios.get(BASEURL + `/rating/${id}`);
+    },
+    updateRating: function (id) {
+      return axios.put(BASEURL + `/rating/${id}`);
+    },
+    deleteRating: function(id) {
+      return axios.delete(BASEURL+`/rating/${id}`);
+    },
 };
 export default api;

@@ -39,6 +39,7 @@ export default function Instructor() {
   const classes = useStyles();
 
   const [activities, setActivities] = React.useState([]);
+  const [ratings, setRatings] = React.useState([]);
   const [filteredActivities, setFilteredActivities] = React.useState([]);
   const [selectedWeekday, setSelectedWeekday] = React.useState([]);
   const [activityAvg, setActivityAvg] = React.useState(0);
@@ -49,6 +50,7 @@ export default function Instructor() {
 
   useEffect(() => {
     loadActivities();
+    loadRatings();
   }, []);
 
   function loadActivities() {
@@ -59,6 +61,18 @@ export default function Instructor() {
           console.log(res.data)
           setActivities(res.data);
           setFilteredActivities(res.data);
+        }
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function loadRatings() {
+    api
+      .getRatings()
+      .then((res) => {
+        if(res.data){
+          console.log(res.data)
+          setRatings(res.data);
         }
       })
       .catch((err) => console.log(err));
