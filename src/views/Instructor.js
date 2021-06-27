@@ -3,6 +3,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumb from "../components/BreadCrumb";
 import InstructorActivityCard from "../components/InstructorActivityCard";
+import MultiSelectChips from "../components/MultiSelectChips";
+
 import "bulma/css/bulma.min.css";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
@@ -37,39 +39,48 @@ export default function Instructor() {
   const classes = useStyles();
 
   const [activities, setActivities] = React.useState([]);
-  const [selectedWeekday, setSelectedWeekday] = React.useState('SUNDAY');
+  const [ratings, setRatings] = React.useState([]);
+  const [filteredActivities, setFilteredActivities] = React.useState([]);
+  const [selectedWeekday, setSelectedWeekday] = React.useState([]);
   const [activityAvg, setActivityAvg] = React.useState(0);
   const [formObject, setFormObject] = useState({})
+ 
+  const [weekdayList, setWeekdayList] = React.useState(['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY']);
 
 
   useEffect(() => {
     loadActivities();
+    loadRatings();
   }, []);
-
-// write function to calculate average 
 
   function loadActivities() {
     api
       .getActivities()
       .then((res) => {
-        const filteredActivities = res.data
-        filteredActivities.filter( (activity) => {
-          let day = activity.weekday.toString()
-          if (day !== selectedWeekday) {
-            return false; 
-          }
-        return true; 
-        })
-        console.log(filteredActivities)
-        setActivities(filteredActivities);
+        if(res.data){
+          console.log(res.data)
+          setActivities(res.data);
+          setFilteredActivities(res.data);
+        }
       })
       .catch((err) => console.log(err));
   }
 
-  const updateWeekday = (weekDay) => {
-    setSelectedWeekday(weekDay);
-    // loadActivities()
+  function loadRatings() {
+    api
+      .getRatings()
+      .then((res) => {
+        if(res.data){
+          console.log(res.data)
+          setRatings(res.data);
+        }
+      })
+      .catch((err) => console.log(err));
   }
+
+  const handleWeekdayChange = (event) => {
+    setSelectedWeekday(event.target.value);
+  };
 
   const removeActivity = (activity) => {
     const id = activity.id;
@@ -121,7 +132,7 @@ const updateActivity = (activity) => {
           <p>INSTRUCTOR VIEW</p>
         </div>
         <Typography variant="h4" color="primary" className={classes.title} >
-          {`Lessons for ${selectedWeekday}`}
+          Lesson Dashboard
         </Typography>
         <div class="message-body">
           <nav>
@@ -139,7 +150,7 @@ const updateActivity = (activity) => {
           </nav>
         </div>
         <div>
-          <Breadcrumb selectAWeekday={() => updateWeekday(selectedWeekday)} />
+        <MultiSelectChips options={weekdayList} title="Select Weekday" selectedOption={selectedWeekday} onOptionChange={handleWeekdayChange} />
         </div>
         <div class="message-body">
           <div class="columns">
@@ -150,8 +161,11 @@ const updateActivity = (activity) => {
                 </div>
               </article>
               {/* <InstructorActivityCard /> */}
-              {activities.map((activity) => {
-                return (<InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />);
+              {filteredActivities?.map((activity) => {
+                if(activity.status?.toString() === "PLANNED" && activity.weekday?.toString() === selectedWeekday?.[0]){
+                  return <InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />
+                }
+                return null;
               })}
             </div>
             <div class="column">
@@ -159,14 +173,26 @@ const updateActivity = (activity) => {
                 <div class="message-header">
                   <p>IN PROGRESS</p>
                 </div>
-              </article>{" "}
+              </article>              
+              {filteredActivities?.map((activity) => {
+                if(activity.status?.toString() === "INPROGRESS" && activity.weekday?.toString() === selectedWeekday?.[0]){
+                  return <InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />
+                }
+                return null;
+              })}
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>COMPLETED</p>
                 </div>
-              </article>{" "}
+              </article>            
+              {filteredActivities?.map((activity) => {
+                if(activity.status?.toString() === "COMPLETED" && activity.weekday?.toString() === selectedWeekday?.[0]){
+                  return <InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />
+                }
+                return null;
+              })}
             </div>
           </div>
         </div>

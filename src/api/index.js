@@ -15,8 +15,8 @@ const api = {
   getActivities: function () {
     return axios.get(BASEURL + "/activity");
   },
-  createActivity: function () {
-    return axios.post(BASEURL + "/activity");
+  createActivity: function (data) {
+    return axios.post(BASEURL + "/activity", data);
   },
   getActivityById: function (id) {
     return axios.get(BASEURL + `/activity/${id}`);
@@ -27,5 +27,21 @@ const api = {
   deleteActivity: function(id) {
     return axios.delete(BASEURL+`/activity/${id}`);
   },
+    // Ratings below
+    getRatings: function () {
+      return axios.get(BASEURL + "/rating");
+    },
+    createRating: function (data) {
+      return axios.post(BASEURL + "/rating", data);
+    },
+    getRatingById: function (id) {
+      return axios.get(BASEURL + `/rating/${id}`);
+    },
+    updateRating: function (id) {
+      return axios.put(BASEURL + `/rating/${id}`);
+    },
+    deleteRating: function(id) {
+      return axios.delete(BASEURL+`/rating/${id}`);
+    },
 };
 export default api;

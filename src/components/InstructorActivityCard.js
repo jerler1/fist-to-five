@@ -32,19 +32,22 @@ export default function InstructorActivityCard(props) {
 
   const bull = <span className={classes.bullet}>•</span>;
   const activity = props.info.id;
-  console.log(activity)
+
   return (
     <Card className={classes.root}>
   {editFormActive ? <ActivityForm /> : 
         <CardContent>
             <Typography variant="h5" component="h2">
-              {props.info.activityName}
+              Activity: {props.info.activityName}
             </Typography>
             <Typography className={classes.pos} color="textSecondary">
-            {props.info.filePath}
+              File Path: {props.info.filePath}
             </Typography>
             <Typography variant="body2" component="p">
-            {props.info.activityDescription}
+              Description: {props.info.activityDescription}
+            </Typography>
+            <Typography variant="body2" component="p">
+              Weekday: {props.info.weekday}
             </Typography>
         </CardContent>}
       <CardActions>
