@@ -44,11 +44,11 @@ export default function StudentActivityCard(props) {
       </CardContent>
       <CardActions>
         <Button size="small">Update Rating</Button>
-        <div class="field">
-  <p class="control has-icons-left">
-    <span class="select">
+        <div className="field">
+  <p className="control has-icons-left">
+    <span className="select">
       <select>
-        <option selected>Rating</option>
+        <option defaultValue>Rating</option>
         <option>0</option>
         <option>1</option>
         <option>2</option>
@@ -57,8 +57,8 @@ export default function StudentActivityCard(props) {
         <option>5</option>
       </select>
     </span>
-    <span class="icon is-small is-left">
-      <i class="fas fa-globe"></i>
+    <span className="icon is-small is-left">
+      <i className="fas fa-globe"></i>
     </span>
   </p>
 </div>
