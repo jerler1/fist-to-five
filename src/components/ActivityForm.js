@@ -2,8 +2,22 @@
 import { useForm } from "react-hook-form";
 import api from "../api/index";
 import React, { useState } from "react";
+import MultiSelectChips from "../components/MultiSelectChips";
 
 export default function ActivityForm() {
+
+  const [selectedWeekday, setSelectedWeekday] = React.useState([]);
+  const [selectedStatus, setSelectedStatus] = React.useState([]);
+  const [weekdayList, setWeekdayList] = React.useState(['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY']);
+  const [statusList, setStatusList] = React.useState(['PLANNED', 'IN PROGRESS', 'COMPLETED']);
+
+  const handleWeekdayChange = (event) => {
+    setSelectedWeekday(event.target.value);
+  };
+  const handleStatusChange = (event) => {
+    setSelectedStatus(event.target.value);
+  };
+
 
   const {
     register,
@@ -13,6 +27,7 @@ export default function ActivityForm() {
   } = useForm();
 
   const createActivity = async (data) => {
+    console.log(data)
     try {
       console.log("This is the activity data: ", data);
       api.createActivity(data).then((data) => {
@@ -77,37 +92,35 @@ export default function ActivityForm() {
                 )}
           </div>
       </div>
-      <p class="control has-icons-left">
-        <span class="select">
-          <select>
-            <option selected>Assign Day of the Week</option>
-            <option>Sunday</option>
-            <option>Monday</option>
-            <option>Tuesday</option>
-            <option>Wednesday</option>
-            <option>Thursday</option>
-            <option>Friday</option>
-            <option>Saturday</option>
-          </select>
-        </span>
-        <span class="icon is-small is-left">
-          <i class="fas fa-globe"></i>
-        </span>
-      </p>
-      <div class="field">
-        <p class="control has-icons-left">
-          <span class="select">
-            <select>
-              <option selected>Set Status</option>
-              <option>Planned</option>
-              <option>In Progress</option>
-              <option>Complete</option>
-            </select>
-          </span>
-          <span class="icon is-small is-left">
-            <i class="fas fa-globe"></i>
-          </span>
-        </p>
+      <div className="field">
+        <label className="label">Weekday:</label>
+          <div className="control">
+            <input
+                type="text"
+                {...register("weekday", { required: true })}
+                className="input is-normal is-primary"
+                />
+                {errors.activityDescription && (
+                  <span className="errorMessage">
+                    Please enter a valid weekday.
+                  </span>
+                )}
+          </div>
+      </div>
+      <div className="field">
+        <label className="label">Status:</label>
+          <div className="control">
+            <input
+                type="text"
+                {...register("status", { required: true })}
+                className="input is-normal is-primary"
+                />
+                {errors.activityDescription && (
+                  <span className="errorMessage">
+                    Please enter an activity status.
+                  </span>
+                )}
+          </div>
       </div>
       <button class="button is-success" type="submit">Create Activity</button>
       {/* {props.activityName ? <button class="button is-success" onClick={handleCreateActivityButtonClick}>Update Activity</button> : <button class="button is-success" onClick={props.createMe}>Create Activity</button> } */}

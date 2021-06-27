@@ -6,9 +6,11 @@ import api from "../api";
 export default function Student() {
 
   const [activities, setActivities] = React.useState([]);
+
   useEffect(() => {
     loadActivities();
   }, []);
+
   function loadActivities() {
     api
       .getActivities()
@@ -33,8 +35,11 @@ export default function Student() {
                   <p>Sunday</p>
                 </div>
               </article>
-              {activities.map((activity) => {
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "SUNDAY"){
                 return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
               })}
             </div>
             <div class="column">
@@ -42,42 +47,78 @@ export default function Student() {
                 <div class="message-header">
                   <p>Monday</p>
                 </div>
-              </article>{" "}
+              </article>              
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "MONDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>Tuesday</p>
                 </div>
-              </article>{" "}
+              </article>
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "TUESDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>Wednesday</p>
                 </div>
-              </article>{" "}
+              </article>              
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "WEDNESDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>Thursday</p>
                 </div>
-              </article>{" "}
+              </article>              
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "THURSDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>Friday</p>
                 </div>
-              </article>{" "}
+              </article>
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "FRIDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
             <div class="column">
               <article class="message is-info">
                 <div class="message-header">
                   <p>Saturday</p>
                 </div>
-              </article>{" "}
+              </article>              
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "SATURDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
           </div>
         </div>
