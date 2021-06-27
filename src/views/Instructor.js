@@ -3,7 +3,6 @@ import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 import Breadcrumb from "../components/BreadCrumb";
 import InstructorActivityCard from "../components/InstructorActivityCard";
-
 import "bulma/css/bulma.min.css";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";

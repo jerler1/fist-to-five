@@ -6,6 +6,7 @@ import Instructor from "./views/Instructor";
 import Student from "./views/Student";
 import { Navbar } from './components/Navbar';
 import ActivityForm from './components/ActivityForm';
+import "bulma/css/bulma.min.css";
 
 function App() {
   return (
