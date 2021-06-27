@@ -17,7 +17,7 @@ const api = {
     return axios.put(BASEURL+`/activity/${id}`);
   },
   deleteActivity: function(id) {
-    return axios.delete(BASEURL+`/activity${id}`);
+    return axios.delete(BASEURL+`/activity/${id}`);
   },
 }
 export default api;

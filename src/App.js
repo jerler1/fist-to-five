@@ -4,8 +4,6 @@ import theme from "./Theme"
 import Login from "./views/Login/Login";
 import Instructor from "./views/Instructor";
 import Student from "./views/Student";
-import StudentActivityCard from './components/StudentActivityCard';
-import InstructorActivityCard from './components/InstructorActivityCard';
 import { Navbar } from './components/Navbar';
 import ActivityForm from './components/ActivityForm';
 

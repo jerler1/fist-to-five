@@ -2,7 +2,7 @@ import React from 'react';
 import "bulma/css/bulma.min.css";
 
 
-export default function ActivityForm() {
+export default function ActivityForm(props) {
 
   return (
 <article class="message is-info">
@@ -10,9 +10,9 @@ export default function ActivityForm() {
     <p>Enter Activity Details</p>
   </div>
   <div class="message-body">
-  <input class="input is-primary" type="text" placeholder="Activity Name"></input>
-  <input class="input is-primary" type="text" placeholder="File Path"></input>
-  <textarea class="textarea is-primary" placeholder="Description"></textarea>
+  <input class="input is-primary" type="text" placeholder="Activity Name" value={props.activityName}></input>
+  <input class="input is-primary" type="text" placeholder="File Path" value={props.filePath}></input>
+  <textarea class="textarea is-primary" placeholder="Description" value={props.activityDescription}></textarea>
   <div class="field">
   <p class="control has-icons-left">
     <span class="select">
@@ -32,8 +32,24 @@ export default function ActivityForm() {
     </span>
   </p>
 </div>
-  <button class="button is-success">Create Activity</button>
-  <button class="button is-danger">Cancel</button>
+<div class="field">
+  <p class="control has-icons-left">
+    <span class="select">
+      <select>
+        <option selected>Set Status</option>
+        <option>Planned</option>
+        <option>In Progress</option>
+        <option>Complete</option>
+      </select>
+    </span>
+    <span class="icon is-small is-left">
+      <i class="fas fa-globe"></i>
+    </span>
+  </p>
+</div>
+{props.activityName ? <button class="button is-success" onClick={props.updateMe}>Update Activity</button> : <button class="button is-success" onClick={props.createMe}>Create Activity</button> }
+  
+  {/* <button class="button is-danger">Cancel</button> */}
 
   </div>
 </article>

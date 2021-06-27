@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { Link } from "react-router-dom";
+import ActivityForm from "../components/ActivityForm";
 
 const useStyles = makeStyles({
   root: {
@@ -25,28 +27,33 @@ const useStyles = makeStyles({
 
 export default function InstructorActivityCard(props) {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
+  const [editFormActive, setEditFormActive] = React.useState(false);
+
+
+  const bull = <span className={classes.bullet}>•</span>;
+  const activity = props.info.id;
+  console.log(activity)
   return (
     <Card className={classes.root}>
-      <CardContent>
-        <Typography variant="h5" component="h2">
-          {props.info.activityName}
-        </Typography>
-        <Typography className={classes.pos} color="textSecondary">
-        {props.info.filePath}
-        </Typography>
-        <Typography variant="body2" component="p">
-        {props.info.activityDescription}
-        </Typography>
-      </CardContent>
+  {editFormActive ? <ActivityForm /> : 
+        <CardContent>
+            <Typography variant="h5" component="h2">
+              {props.info.activityName}
+            </Typography>
+            <Typography className={classes.pos} color="textSecondary">
+            {props.info.filePath}
+            </Typography>
+            <Typography variant="body2" component="p">
+            {props.info.activityDescription}
+            </Typography>
+        </CardContent>}
       <CardActions>
-        <Button size="small">Update</Button>
-        <Button size="small">Delete</Button>
+        <Button size="small" onClick={props.updateMe} >Update</Button>
+        <Button size="small" onClick={props.removeMe} >Delete</Button>
         <div class="field">
-  <p class="control has-icons-left">
-  </p>
-</div>
+          <p class="control has-icons-left"></p>
+        </div>
       </CardActions>
     </Card>
   );

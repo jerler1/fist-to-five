@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Grid from "@material-ui/core/Grid";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
-import Paper from "@material-ui/core/Paper";
-import Divider from "@material-ui/core/Divider";
-import StudentActivityCard from "../components/StudentActivityCard";
+import Breadcrumb from "../components/BreadCrumb";
 import InstructorActivityCard from "../components/InstructorActivityCard";
+
 import "bulma/css/bulma.min.css";
 import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
@@ -29,24 +27,93 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: "3.5em",
     },
   },
+  title: {
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: '1rem'
+  },
 }));
 
 export default function Instructor() {
   const classes = useStyles();
 
   const [activities, setActivities] = React.useState([]);
+  const [selectedWeekday, setSelectedWeekday] = React.useState('SUNDAY');
+  const [activityAvg, setActivityAvg] = React.useState(0);
+  const [formObject, setFormObject] = useState({})
+
+
   useEffect(() => {
     loadActivities();
   }, []);
+
+// write function to calculate average 
+
   function loadActivities() {
     api
       .getActivities()
       .then((res) => {
-        setActivities(res.data);
-        console.log(res.data);
+        const filteredActivities = res.data
+        filteredActivities.filter( (activity) => {
+          let day = activity.weekday.toString()
+          if (day !== selectedWeekday) {
+            return false; 
+          }
+        return true; 
+        })
+        console.log(filteredActivities)
+        setActivities(filteredActivities);
       })
       .catch((err) => console.log(err));
   }
+
+  const updateWeekday = (weekDay) => {
+    setSelectedWeekday(weekDay);
+    // loadActivities()
+  }
+
+  const removeActivity = (activity) => {
+    const id = activity.id;
+    api.deleteActivity(id).then(res => {
+        if(res) {
+           loadActivities()
+        }
+    }).catch(err => {
+        console.log(err)
+    });
+}
+
+const updateActivity = (activity) => {
+  const id = activity.id;
+  // api.updateActivity(id).then(res => {
+  //     if(res) {
+  //        console.log(res)
+  //        loadActivities()
+  //     }
+  // }).catch(err => {
+  //     console.log(err)
+  // });
+}
+  // // Handles updating component state when the user types into the input field
+  // function handleInputChange(event) {
+  //   const { name, value } = event.target;
+  //   setFormObject({...formObject, [name]: value})
+  // };
+
+  //   // When the form is submitted, use the API.createActivity method to save the book data
+
+  // function handleFormSubmit(event) {
+  //   event.preventDefault();
+  //   if (formObject.activityName && formObject.filePath && activityDescription) {
+  //     api.createActivity({
+  //       activityName: formObject.title,
+  //       filePath: formObject.author,
+  //       activityDescription: formObject.synopsis
+  //     })
+  //       .then(res => loadActivities())
+  //       .catch(err => console.log(err));
+  //   }
+  // };
 
   return (
     <div>
@@ -54,6 +121,9 @@ export default function Instructor() {
         <div class="message-header">
           <p>INSTRUCTOR VIEW</p>
         </div>
+        <Typography variant="h4" color="primary" className={classes.title} >
+          {`Lessons for ${selectedWeekday}`}
+        </Typography>
         <div class="message-body">
           <nav>
             <Button
@@ -69,6 +139,9 @@ export default function Instructor() {
             </Button>
           </nav>
         </div>
+        <div>
+          <Breadcrumb selectAWeekday={() => updateWeekday(selectedWeekday)} />
+        </div>
         <div class="message-body">
           <div class="columns">
             <div class="column">
@@ -79,7 +152,7 @@ export default function Instructor() {
               </article>
               {/* <InstructorActivityCard /> */}
               {activities.map((activity) => {
-                return <InstructorActivityCard info={activity} />;
+                return (<InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />);
               })}
             </div>
             <div class="column">
