@@ -49,7 +49,7 @@ export default function StudentActivityCard(props) {
   <p className="control has-icons-left">
     <span className="select">
       <select>
-        <option selected>Rating</option>
+        <option defaultValue>Rating</option>
         <option>0</option>
         <option>1</option>
         <option>2</option>
