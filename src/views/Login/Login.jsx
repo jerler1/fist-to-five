@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Login.scss";
-import { makeStyles, useTheme } from "@material-ui/core/styles";
 import { useForm } from "react-hook-form";
 import api from "../../api/index";
 
