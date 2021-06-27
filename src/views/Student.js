@@ -34,9 +34,12 @@ export default function Student() {
                   <p>Sunday</p>
                 </div>
               </article>
-              {activities.map((activity) => {
-                console.log(activity);
-                return <StudentActivityCard info={activity} key={activity.id}/>;
+
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "SUNDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
               })}
             </div>
             <div className="column">
@@ -44,7 +47,13 @@ export default function Student() {
                 <div className="message-header">
                   <p>Monday</p>
                 </div>
-              </article>
+              </article>              
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "MONDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
             <div className="column">
               <article className="message is-info">
@@ -52,20 +61,38 @@ export default function Student() {
                   <p>Tuesday</p>
                 </div>
               </article>
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "TUESDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
             <div className="column">
               <article className="message is-info">
                 <div className="message-header">
                   <p>Wednesday</p>
                 </div>
-              </article>
+              </article>              
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "WEDNESDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
             <div className="column">
               <article className="message is-info">
                 <div className="message-header">
                   <p>Thursday</p>
                 </div>
-              </article>
+              </article>              
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "THURSDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
             <div className="column">
               <article className="message is-info">
@@ -73,13 +100,26 @@ export default function Student() {
                   <p>Friday</p>
                 </div>
               </article>
+
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "FRIDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
             <div className="column">
               <article className="message is-info">
                 <div className="message-header">
                   <p>Saturday</p>
                 </div>
-              </article>
+              </article>              
+              {activities?.map((activity) => {
+                if(activity.weekday?.toString() === "SATURDAY"){
+                return (<StudentActivityCard info={activity} />);
+              }
+              return null; 
+              })}
             </div>
           </div>
         </div>
