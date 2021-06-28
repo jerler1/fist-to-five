@@ -44,6 +44,7 @@ export default function Instructor() {
   const [selectedWeekday, setSelectedWeekday] = React.useState([]);
   const [activityAvg, setActivityAvg] = React.useState(0);
   const [formObject, setFormObject] = useState({})
+  const [showUpdateForm, setShowUpdateForm] = React.useState(false);
  
   const [weekdayList, setWeekdayList] = React.useState(['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY']);
 
@@ -93,38 +94,6 @@ export default function Instructor() {
     });
 }
 
-const updateActivity = (activity) => {
-  const id = activity.id;
-  // api.updateActivity(id).then(res => {
-  //     if(res) {
-  //        console.log(res)
-  //        loadActivities()
-  //     }
-  // }).catch(err => {
-  //     console.log(err)
-  // });
-}
-  // // Handles updating component state when the user types into the input field
-  // function handleInputChange(event) {
-  //   const { name, value } = event.target;
-  //   setFormObject({...formObject, [name]: value})
-  // };
-
-  //   // When the form is submitted, use the API.createActivity method to save the book data
-
-  // function handleFormSubmit(event) {
-  //   event.preventDefault();
-  //   if (formObject.activityName && formObject.filePath && activityDescription) {
-  //     api.createActivity({
-  //       activityName: formObject.title,
-  //       filePath: formObject.author,
-  //       activityDescription: formObject.synopsis
-  //     })
-  //       .then(res => loadActivities())
-  //       .catch(err => console.log(err));
-  //   }
-  // };
-
   return (
     <div>
       <article>
@@ -163,7 +132,7 @@ const updateActivity = (activity) => {
               {/* <InstructorActivityCard /> */}
               {filteredActivities?.map((activity) => {
                 if(activity.status?.toString() === "PLANNED" && activity.weekday?.toString() === selectedWeekday?.[0]){
-                  return <InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />
+                  return <InstructorActivityCard info={activity}  removeMe={() => removeActivity(activity)} />
                 }
                 return null;
               })}
@@ -176,7 +145,7 @@ const updateActivity = (activity) => {
               </article>              
               {filteredActivities?.map((activity) => {
                 if(activity.status?.toString() === "INPROGRESS" && activity.weekday?.toString() === selectedWeekday?.[0]){
-                  return <InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />
+                  return <InstructorActivityCard info={activity} removeMe={() => removeActivity(activity)} />
                 }
                 return null;
               })}
@@ -189,7 +158,7 @@ const updateActivity = (activity) => {
               </article>            
               {filteredActivities?.map((activity) => {
                 if(activity.status?.toString() === "COMPLETED" && activity.weekday?.toString() === selectedWeekday?.[0]){
-                  return <InstructorActivityCard info={activity} updateMe={() => updateActivity(activity)}  removeMe={() => removeActivity(activity)} />
+                  return <InstructorActivityCard info={activity} removeMe={() => removeActivity(activity)} />
                 }
                 return null;
               })}
