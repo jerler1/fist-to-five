@@ -35,7 +35,7 @@ export default function InstructorActivityCard(props) {
 
   return (
     <Card className={classes.root}>
-  {editFormActive ? <ActivityForm /> : 
+  {editFormActive ? <ActivityForm activityInfo={props} /> : 
         <CardContent>
             <Typography variant="h5" component="h2">
               Activity: {props.info.activityName}
@@ -49,14 +49,16 @@ export default function InstructorActivityCard(props) {
             <Typography variant="body2" component="p">
               Weekday: {props.info.weekday}
             </Typography>
-        </CardContent>}
+
       <CardActions>
-        <Button size="small" onClick={props.updateMe} >Update</Button>
+        <Button size="small" onClick={() => setEditFormActive(!editFormActive)} >Edit</Button>
         <Button size="small" onClick={props.removeMe} >Delete</Button>
         <div class="field">
           <p class="control has-icons-left"></p>
         </div>
       </CardActions>
+        </CardContent>}
+
     </Card>
   );
 }
