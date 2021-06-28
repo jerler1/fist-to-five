@@ -20,6 +20,10 @@ export default function Student() {
       .catch((err) => console.log(err));
   }
 
+  function ratingOnClick(e) {
+    console.log(e.target);
+  }
+
   return (
     <div>
       <article>
@@ -37,7 +41,7 @@ export default function Student() {
 
               {activities?.map((activity) => {
                 if(activity.weekday?.toString() === "SUNDAY"){
-                return (<StudentActivityCard info={activity} />);
+                return (<StudentActivityCard info={activity} onRatingClick={ratingOnClick}/>);
               }
               return null; 
               })}

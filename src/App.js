@@ -5,7 +5,7 @@ import Login from "./views/Login/Login";
 import Instructor from "./views/Instructor";
 import Student from "./views/Student";
 import { Navbar } from './components/Navbar';
-import ActivityForm from './components/ActivityForm';
+import NewActivityForm from "./components/NewActivityForm";
 import "bulma/css/bulma.min.css";
 
 function App() {
@@ -13,14 +13,11 @@ function App() {
     <ThemeProvider theme={theme}>
         <BrowserRouter>
         <Navbar />
-        {/* <ActivityForm/> */}
             <Switch>
-            {/* <Student /> */}
-            {/* <Instructor/> */}
               <Route exact path="/" component={Login}/>
               <Route exact path="/instructor" component={Instructor}/>
               <Route exact path="/student" component={Student}/>
-              <Route exact path="/createActivity" component={ActivityForm}/>
+              <Route exact path="/createActivity" component={NewActivityForm}/>
             </Switch>
         </BrowserRouter>
     </ThemeProvider>
