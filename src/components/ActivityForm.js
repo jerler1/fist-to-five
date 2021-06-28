@@ -1,36 +1,38 @@
-
 import { useForm } from "react-hook-form";
 import api from "../api/index";
 import React, { useState, useEffect } from "react";
 
 export default function ActivityForm(props) {
-
-  const { activityDescription, activityName, filePath, status, weekday } = props.activityInfo.info;
+  const { activityDescription, activityName, filePath, status, weekday, id } =
+    props.activityInfo.info;
+  const [formName, setFormName] = useState("");
   const [formValues, setFormValues] = useState({
+    id: "",
     activityDescription: "",
     activityName: "",
     filePath: "",
     status: "",
-    weekday: ""
-  })
+    weekday: "",
+  });
 
-  const onChange = (e) => {
-    const { name, value } = e.target;
-    console.log("hi this is onchange")
-    setFormValues({...formValues, [name]: value})
-  };
+  // const onChange = (event) => {
+  //   const { name, value } = event.target;
+  //   console.log("hi this is onchange")
+  //   setFormValues({...formValues, [name]: value})
+  // };
 
   useEffect(() => {
     setFormValues({
-      activityDescription, 
-      activityName, 
+      id,
+      activityDescription,
+      activityName,
       filePath,
       status,
-      weekday
-    })
-  }, [activityDescription, activityName, filePath, status, weekday])
+      weekday,
+    });
+  }, [id, activityDescription, activityName, filePath, status, weekday]);
 
-console.log(props)
+  console.log(props);
   const {
     register,
     formState: { errors },
@@ -38,14 +40,11 @@ console.log(props)
     reset,
   } = useForm();
 
-
-
-  
   const createActivity = async (data) => {
-    console.log(data)
+    console.log(data);
     try {
       console.log("This is the activity data: ", data);
-      api.createActivity(data).then((data) => {
+      api.createActivity(data.id).then((data) => {
         console.log("This is post axios", data);
       });
       reset();
@@ -54,12 +53,11 @@ console.log(props)
     }
   };
 
-
-  const updateActivity = async (data) => {
-    console.log(data)
+  const updatingActivity = async (data) => {
+    const newData = { ...data, id };
     try {
-      console.log("This is the activity data: ", data);
-      api.updateActivity(data).then((data) => {
+      console.log("This is the activity data: ", newData);
+      api.updateActivity(id, newData).then((data) => {
         console.log("This is update axios", data);
       });
       reset();
@@ -69,97 +67,103 @@ console.log(props)
   };
 
   return (
-<article class="message is-info">
-  <div class="message-header">
-    <p>Enter Activity Details</p>
-  </div>
-  {/* {isCreateAccountActive ? ( */}
-  <div class="message-body">
-    <form className="instructorForm" onSubmit={handleSubmit(updateActivity)} noValidate>
-      <div className="field">
-        <label className="label">Activity Name:</label>
-          <div className="control">
-            <input
-                onChange={() => onChange}
-                value={formValues.activityName}
+    <article class="message is-info">
+      <div class="message-header">
+        <p>Enter Activity Details</p>
+      </div>
+      {/* {isCreateAccountActive ? ( */}
+      <div class="message-body">
+        <form
+          className="instructorForm"
+          onSubmit={handleSubmit(updatingActivity)}
+          noValidate
+        >
+          <div className="field">
+            <label className="label">Activity Name:</label>
+            <div className="control">
+              <input
+                defaultValue={formValues.activityName}
                 type="text"
                 {...register("activityName", { required: true })}
                 className="input is-normal is-primary"
-                />
-                {errors.activityName && (
-                  <span className="errorMessage">
-                    Please enter a valid activity name.
-                  </span>
-                )}
+                // onChange={onChange}
+              />
+              {errors.activityName && (
+                <span className="errorMessage">
+                  Please enter a valid activity name.
+                </span>
+              )}
+            </div>
           </div>
-      </div>
-      <div className="field">
-        <label className="label">File Path:</label>
-          <div className="control">
-            <input
+          <div className="field">
+            <label className="label">File Path:</label>
+            <div className="control">
+              <input
                 value={filePath}
                 type="text"
                 {...register("filePath", { required: true })}
                 className="input is-normal is-primary"
-                />
-                {errors.filePath && (
-                  <span className="errorMessage">
-                    Please enter a valid file path.
-                  </span>
-                )}
+              />
+              {errors.filePath && (
+                <span className="errorMessage">
+                  Please enter a valid file path.
+                </span>
+              )}
+            </div>
           </div>
-      </div>
-      <div className="field">
-        <label className="label">Activity Description:</label>
-          <div className="control">
-            <input
+          <div className="field">
+            <label className="label">Activity Description:</label>
+            <div className="control">
+              <input
                 value={activityDescription}
                 type="text"
                 {...register("activityDescription", { required: true })}
                 className="input is-normal is-primary"
-                />
-                {errors.activityDescription && (
-                  <span className="errorMessage">
-                    Please enter a valid activity description.
-                  </span>
-                )}
+              />
+              {errors.activityDescription && (
+                <span className="errorMessage">
+                  Please enter a valid activity description.
+                </span>
+              )}
+            </div>
           </div>
-      </div>
-      <div className="field">
-        <label className="label">Weekday:</label>
-          <div className="control">
-            <input
+          <div className="field">
+            <label className="label">Weekday:</label>
+            <div className="control">
+              <input
                 value={weekday}
                 type="text"
                 {...register("weekday", { required: true })}
                 className="input is-normal is-primary"
-                />
-                {errors.activityDescription && (
-                  <span className="errorMessage">
-                    Please enter a valid weekday.
-                  </span>
-                )}
+              />
+              {errors.activityDescription && (
+                <span className="errorMessage">
+                  Please enter a valid weekday.
+                </span>
+              )}
+            </div>
           </div>
-      </div>
-      <div className="field">
-        <label className="label">Status:</label>
-          <div className="control">
-            <input
+          <div className="field">
+            <label className="label">Status:</label>
+            <div className="control">
+              <input
                 value={status}
                 type="text"
                 {...register("status", { required: true })}
                 className="input is-normal is-primary"
-                />
-                {errors.activityDescription && (
-                  <span className="errorMessage">
-                    Please enter an activity status.
-                  </span>
-                )}
+              />
+              {errors.activityDescription && (
+                <span className="errorMessage">
+                  Please enter an activity status.
+                </span>
+              )}
+            </div>
           </div>
+          <button class="button is-success" type="submit">
+            {activityName ? "Update Activity" : "Create Activity"}
+          </button>
+        </form>
       </div>
-      <button class="button is-success" type="submit">{activityName ? "Update Activity" : "Create Activity"}</button>
-    </form>
-  </div>
-</article>
+    </article>
   );
 }

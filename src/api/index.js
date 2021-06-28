@@ -21,8 +21,8 @@ const api = {
   getActivityById: function (id) {
     return axios.get(BASEURL + `/activity/${id}`);
   },
-  updateActivity: function (id) {
-    return axios.put(BASEURL + `/activity/${id}`);
+  updateActivity: function (id, formObject) {
+    return axios.put(BASEURL + `/activity/${id}`, formObject);
   },
   deleteActivity: function(id) {
     return axios.delete(BASEURL+`/activity/${id}`);
