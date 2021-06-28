@@ -36,7 +36,6 @@ export default function ActivityForm(props) {
     });
   }, [id, activityDescription, activityName, filePath, status, weekday]);
 
-  console.log(props);
   const {
     register,
     formState: { errors },
@@ -90,7 +89,7 @@ export default function ActivityForm(props) {
             <label className="label">File Path:</label>
             <div className="control">
               <input
-                value={filePath}
+                defaultValue={formValues.filePath}
                 type="text"
                 {...register("filePath", { required: true })}
                 className="input is-normal is-primary"
@@ -106,7 +105,7 @@ export default function ActivityForm(props) {
             <label className="label">Activity Description:</label>
             <div className="control">
               <input
-                value={activityDescription}
+                defaultValue={formValues.activityDescription}
                 type="text"
                 {...register("activityDescription", { required: true })}
                 className="input is-normal is-primary"
@@ -122,7 +121,7 @@ export default function ActivityForm(props) {
             <label className="label">Weekday:</label>
             <div className="control">
               <input
-                value={weekday}
+                defaultValue={formValues.weekday}
                 type="text"
                 {...register("weekday", { required: true })}
                 className="input is-normal is-primary"
@@ -138,7 +137,7 @@ export default function ActivityForm(props) {
             <label className="label">Status:</label>
             <div className="control">
               <input
-                value={status}
+                defaultValue={formValues.status}
                 type="text"
                 {...register("status", { required: true })}
                 className="input is-normal is-primary"
